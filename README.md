@@ -1,4 +1,4 @@
-# WpfAppByCrippy
+# WpfAppByCrippy - Multi game tool for RGH Xbox 360's. 
 *You will need to add jrpc.dll and xdevkit.dll to compile from source
 
 Images
