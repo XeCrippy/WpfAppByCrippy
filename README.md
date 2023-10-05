@@ -1,4 +1,6 @@
 # WpfAppByCrippy
+*You will need to add jrpc.dll and xdevkit.dll to compile from source
+
 Images
 
 <a href="https://gyazo.com/907e1654430f11d1ab08c2a6d8ba9a64"><img src="https://i.gyazo.com/907e1654430f11d1ab08c2a6d8ba9a64.png" alt="Image from Gyazo" width="606"/></a>
