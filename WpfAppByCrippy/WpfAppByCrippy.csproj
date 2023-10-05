@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Imgs\l4d.png" />
+    <None Remove="l4d.png" />
+    <None Remove="logosmall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JRPC++">
+      <HintPath>..\..\..\..\Libraries\JRPC++\JRPC++\bin\Release\JRPC++.dll</HintPath>
+    </Reference>
+    <Reference Include="XDevkit">
+      <HintPath>..\..\..\..\Libraries\JRPC++\JRPC++\bin\Release\xdevkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imgs\l4d.png" />
+    <Resource Include="l4d.png" />
+    <Resource Include="logosmall.png" />
+  </ItemGroup>
+
+</Project>

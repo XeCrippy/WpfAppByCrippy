@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfAppByCrippy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppByCrippy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" AllowsTransparency="True"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#FF151515" BorderBrush="Firebrick" BorderThickness="1" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="Transparent" Height="35" Stroke="Transparent" Grid.Row="0" Grid.ColumnSpan="2" Width="599"/> 
+        <Label Foreground="WhiteSmoke" Content="Multi Tool (Community) by XeCrippy" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Style="{DynamicResource CloseButton}" x:Name="CloseBtn" Click="CloseBtn_Click" Content="X" FontSize="14" FontWeight="Bold" Foreground="WhiteSmoke" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="35" VerticalAlignment="Center" Height="34" Background="Transparent" BorderThickness="0" Margin="0,0,3,0"/>
+        <Button Style="{DynamicResource DefaultButton}" Name="MinimizeBtn" Click="MinimizeBtn_Click" Content="_" FontSize="18" VerticalContentAlignment="Top" FontWeight="Bold" Foreground="WhiteSmoke" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  Width="35" Height="34" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Margin="0,0,40,0"/>
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="ConnectBtn2" Click="ConnectBtn2_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="30" Width="30" Background="Transparent" BorderBrush="Transparent" ToolTip="Connect to console">
+            <Image Stretch="Fill" Source="/logosmall.png"/>
+        </Button>
+        <ScrollViewer Style="{DynamicResource ScrollViewerStyle1}" Grid.Row="1" Grid.ColumnSpan="2" Margin="2" Width="594" Height="135" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="L4D2Btn" Click="L4D2Btn_Click" Grid.Column="0" Height="100" Width="100" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/l4d.png" Stretch="Fill"/>
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="1" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="6" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+
+                </Button>
+            </Grid>
+        </ScrollViewer>
+        
+        <Frame x:Name="NavFrame1" Grid.Row="2" Grid.ColumnSpan="2"  NavigationUIVisibility="Hidden" Padding="10" Margin="5,15,5,5"/>
+    </Grid>
+</Window>
