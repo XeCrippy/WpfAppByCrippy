@@ -6,3 +6,4 @@ https://gyazo.com/907e1654430f11d1ab08c2a6d8ba9a64
 
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="Ty4RboD"><a href="https://imgur.com/Ty4RboD">View post on imgur.com</a></blockquote>
+<blockquote class="imgur-embed-pub" lang="en" data-id="baPlCJT"><a href="https://imgur.com/baPlCJT">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
