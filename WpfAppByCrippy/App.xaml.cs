@@ -46,7 +46,7 @@ namespace WpfAppByCrippy
         {
             msgTitle = "Connection Error";
             msgBody = "You are not connected to your console";
-activeConnection=false;
+            activeConnection=false;
             var msgBox = new MsgBox.MsgBox();
             msgBox.ShowDialog();
         }
