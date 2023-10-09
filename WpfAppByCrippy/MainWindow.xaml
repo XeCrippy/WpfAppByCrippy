@@ -25,7 +25,7 @@
         <Button Style="{DynamicResource CloseButton}" x:Name="CloseBtn" Click="CloseBtn_Click" Content="X" FontSize="14" FontWeight="Bold" Foreground="WhiteSmoke" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Width="35" VerticalAlignment="Center" Height="34" Background="Transparent" BorderThickness="0" Margin="0,0,3,0"/>
         <Button Style="{DynamicResource DefaultButton}" Name="MinimizeBtn" Click="MinimizeBtn_Click" Content="_" FontSize="18" VerticalContentAlignment="Top" FontWeight="Bold" Foreground="WhiteSmoke" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  Width="35" Height="34" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Margin="0,0,40,0"/>
         <Button Style="{DynamicResource ButtonStyle1}" x:Name="ConnectBtn2" Click="ConnectBtn2_Click" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="30" Width="30" Background="Transparent" BorderBrush="Transparent" ToolTip="Connect to console">
-            <Image Stretch="Fill" Source="/logosmall.png"/>
+            <Image Stretch="Fill" Source="/Imgs/logosmall.png"/>
         </Button>
         <ScrollViewer Style="{DynamicResource ScrollViewerStyle1}" Grid.Row="1" Grid.ColumnSpan="2" Margin="2" Width="594" Height="135" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left">
             <Grid>
@@ -44,11 +44,11 @@
                 <Button Name="L4D2Btn" Click="L4D2Btn_Click" Grid.Column="0" Height="100" Width="100" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
                     <Image Source="/Imgs/l4d.png" Stretch="Fill"/>
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="1" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                <Button x:Name="MKBtn" Click="MKBtn_Click"  Height="100" Width="100" Grid.Column="1" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/mkkomplete.png" />
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                <Button x:Name="Crysis2Btn" Click="Crysis2Btn_Click" Height="100" Width="100" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/crysis2.png" Stretch="Fill"/>
                 </Button>
                 <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
 
@@ -68,6 +68,6 @@
             </Grid>
         </ScrollViewer>
         
-        <Frame x:Name="NavFrame1" Grid.Row="2" Grid.ColumnSpan="2"  NavigationUIVisibility="Hidden" Padding="10" Margin="5,15,5,5"/>
+        <Frame x:Name="NavFrame1" Grid.Row="2" Grid.ColumnSpan="2"  NavigationUIVisibility="Hidden" Padding="10" Margin="5,20,5,5"/>
     </Grid>
 </Window>

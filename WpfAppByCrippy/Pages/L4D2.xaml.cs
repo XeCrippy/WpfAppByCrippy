@@ -7,7 +7,7 @@ namespace WpfAppByCrippy.Pages
 {
     public partial class L4D2 : Page
     {
-        Left4Dead2Helper helper = new Left4Dead2Helper();
+        private readonly Left4Dead2Helper helper = new();
         
         public L4D2()
         {
@@ -28,7 +28,7 @@ namespace WpfAppByCrippy.Pages
             try
             {
                 if (App.activeConnection)
-                    helper.Cbuf_AddText(CmdBox.Text);
+                    Left4Dead2Helper.Cbuf_AddText(CmdBox.Text);
                 else App.ConnectionError();
             }
             catch (Exception ex) { App.Error(ex); }
@@ -83,7 +83,7 @@ namespace WpfAppByCrippy.Pages
         {
             try
             {
-                helper.NoClip(NoClipBtn);
+                Left4Dead2Helper.NoClip();
             }
             catch(Exception ex) { App.Error(ex);}
         }

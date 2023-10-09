@@ -8,9 +8,6 @@
       d:DesignHeight="450" d:DesignWidth="600"
       Title="L4D2">
 
-    <Page.Resources>
-
-    </Page.Resources>
     <Grid Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

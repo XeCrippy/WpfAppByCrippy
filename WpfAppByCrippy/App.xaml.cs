@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using JRPCPlusPlus;
+using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using JRPCPlusPlus;
 using XDevkit;
 
 namespace WpfAppByCrippy
@@ -15,10 +11,12 @@ namespace WpfAppByCrippy
     public partial class App : Application
     {
         public static IXboxConsole xb;
-        public static bool activeConnection = false;
-
-        public static string msgBody { get; set; }
-        public static string msgTitle { get; set; }
+        public static IXboxManager xbm;
+        public static XboxConsole xbdbg;
+        public static bool activeConnection;
+        public static bool dbgConnection;
+        public static string? MsgBody { get; set; }
+        public static string? MsgTitle { get; set; }
 
         public static bool Connected()
         {
@@ -44,30 +42,54 @@ namespace WpfAppByCrippy
 
         public static void ConnectionError()
         {
-            msgTitle = "Connection Error";
-            msgBody = "You are not connected to your console";
-            activeConnection=false;
+            MsgTitle = "Connection Error";
+            MsgBody = "You are not connected to your console";
             var msgBox = new MsgBox.MsgBox();
             msgBox.ShowDialog();
+            activeConnection = false;
+            dbgConnection = false;
+        }
+
+        public static bool DbgConnect()
+        {
+            try
+            {
+                xbm = new XboxManager();
+                xbdbg = xbm.OpenConsole(xbm.DefaultConsole);
+                xbdbg.OpenConnection(null);
+                dbgConnection = true;
+                return true;
+            }
+            catch
+            {
+                dbgConnection = false;
+                return false;
+            }
         }
 
         public static void Error(Exception e)
         {
-            msgTitle = e.GetType().ToString();
-            msgBody = e.Message;
+            MsgTitle = e.GetType().ToString();
+            MsgBody = e.Message;
             var msgBox = new MsgBox.MsgBox();
             msgBox.ShowDialog();
+
+            if (e is COMException)
+            {
+                dbgConnection = false;
+                activeConnection = false;
+                MsgTitle = "Connection Error";
+                MsgBody = "You are not connected to your console";
+            }
         }
 
-        public static void xMessageBox(string title, string msg)
+        public static void XMessageBox(string title, string msg)
         {
-            msgTitle = title;
-            msgBody = msg;
+            MsgTitle = title;
+            MsgBody = msg;
             var msgBox = new MsgBox.MsgBox(); 
             msgBox.ShowDialog();
         }
-
-        public static bool state;
 
         public static void ToggleBtn_off(ToggleButton toggleButton)
         {

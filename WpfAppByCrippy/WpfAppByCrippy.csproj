@@ -6,16 +6,22 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imgs\crysis2.png" />
     <None Remove="Imgs\l4d.png" />
-    <None Remove="l4d.png" />
-    <None Remove="logosmall.png" />
+    <None Remove="Imgs\logosmall.png" />
+    <None Remove="Imgs\mkkomplete.png" />
+    <None Remove="SplashScreenTest\xbaLogo3.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="Imgs\crysis2.png" />
+    <Resource Include="Imgs\logosmall.png" />
+    <Resource Include="Imgs\mkkomplete.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,8 +35,10 @@
 
   <ItemGroup>
     <Resource Include="Imgs\l4d.png" />
-    <Resource Include="l4d.png" />
-    <Resource Include="logosmall.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="SplashScreenTest\xbaLogo3.png" />
   </ItemGroup>
 
 </Project>

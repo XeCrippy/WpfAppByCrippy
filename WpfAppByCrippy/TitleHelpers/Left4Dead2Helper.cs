@@ -12,12 +12,12 @@ namespace WpfAppByCrippy.TitleHelpers
         private bool playerPos = false;
         private bool svCheats = false;
 
-        public void Cbuf_AddText(string command)
+        public static void Cbuf_AddText(string command)
         {
             App.xb.CallVoid(0x86BCDDB0, 0, command, 0);
         }
 
-        public void FpsCounter(ToggleButton toggleButton)
+        public bool FpsCounter(ToggleButton toggleButton)
         {
             if (!fpsCounter && App.activeConnection) 
             {
@@ -37,9 +37,10 @@ namespace WpfAppByCrippy.TitleHelpers
                 fpsCounter = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return fpsCounter;
         }
 
-        public void GodMode(ToggleButton toggleButton)
+        public bool GodMode(ToggleButton toggleButton)
         {
             if (!godMode && App.activeConnection)
             {
@@ -59,9 +60,10 @@ namespace WpfAppByCrippy.TitleHelpers
                 godMode = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return godMode;
         }
 
-        public void InfiniteAmmo(ToggleButton toggleButton)
+        public bool InfiniteAmmo(ToggleButton toggleButton)
         {
             if(!infAmmo && App.activeConnection)
             {
@@ -81,16 +83,17 @@ namespace WpfAppByCrippy.TitleHelpers
                 infAmmo = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return infAmmo;
         }
 
-        public void NoClip(ToggleButton toggleButton)
+        public static void NoClip()
         {
             if (App.activeConnection)
                 Cbuf_AddText("noclip;say Toggled No Clip");
             else App.ConnectionError();
         }
 
-        public void PlayerPosition(ToggleButton toggleButton)
+        public bool PlayerPosition(ToggleButton toggleButton)
         {
             if (!playerPos && App.activeConnection)
             {
@@ -110,9 +113,10 @@ namespace WpfAppByCrippy.TitleHelpers
                 playerPos = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return playerPos;
         }
 
-        public void ShowGraphs(ToggleButton toggleButton)
+        public bool ShowGraphs(ToggleButton toggleButton)
         {
             if (!graphs && App.activeConnection)
             {
@@ -132,9 +136,10 @@ namespace WpfAppByCrippy.TitleHelpers
                 graphs = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return graphs;
         }
 
-        public void SV_Cheats(ToggleButton toggleButton)
+        public bool SV_Cheats(ToggleButton toggleButton)
         {
             if (!svCheats&& App.activeConnection)
             {
@@ -154,6 +159,7 @@ namespace WpfAppByCrippy.TitleHelpers
                 svCheats = false;
                 App.ToggleBtn_off(toggleButton);
             }
+            return svCheats;
         }
     }
 }

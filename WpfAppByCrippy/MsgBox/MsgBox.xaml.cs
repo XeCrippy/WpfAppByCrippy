@@ -12,8 +12,8 @@ namespace WpfAppByCrippy.MsgBox
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MsgTitle.Text = App.msgTitle;
-            MsgContent.Text = App.msgBody;
+            MsgTitle.Text = App.MsgTitle;
+            MsgContent.Text = App.MsgBody;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

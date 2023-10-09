@@ -1,24 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfAppByCrippy.Pages;
 
 namespace WpfAppByCrippy
 {
     public partial class MainWindow : Window
     {
         private bool l4d2;
+        private bool mk;
 
         public MainWindow()
         {
@@ -67,6 +56,25 @@ namespace WpfAppByCrippy
             {
                 App.Error(ex);
             }
+        }
+
+        private void MKBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!mk)
+            {
+                NavFrame1.Source = new Uri("Pages/MortalKombatKompleteEdition.xaml", UriKind.RelativeOrAbsolute);
+                mk = true;
+            }
+            else
+            {
+                NavFrame1.Content = null;
+                mk = false;
+            }
+        }
+
+        private void Crysis2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame1.Source = new Uri("Pages/Crysis2.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }
