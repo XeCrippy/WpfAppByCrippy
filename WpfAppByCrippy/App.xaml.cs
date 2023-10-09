@@ -15,8 +15,8 @@ namespace WpfAppByCrippy
         public static XboxConsole xbdbg;
         public static bool activeConnection;
         public static bool dbgConnection;
-        public static string? MsgBody { get; set; }
-        public static string? MsgTitle { get; set; }
+        public static string MsgBody { get; set; }
+        public static string MsgTitle { get; set; }
 
         public static bool Connected()
         {
