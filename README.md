@@ -1,8 +1,11 @@
 # WpfAppByCrippy - Multi game tool for RGH Xbox 360's. 
 This is just a simple wpf gui I started the other day and will probably never finish. 
 
-Currently supports:
-Left 4 Dead 2 - TU6 (latest)
+Currently supports: <br/>
+Crysis 2 <br/>
+Left 4 Dead 2 - TU6 (latest) <br/>
+Mortal Kombat Komplete Edition <br/>
+
 
 *You will need to add jrpc.dll and xdevkit.dll to compile from source
 
