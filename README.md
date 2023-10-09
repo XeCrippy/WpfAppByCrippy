@@ -7,7 +7,7 @@ Left 4 Dead 2 - TU6 (latest) <br/>
 Mortal Kombat Komplete Edition <br/>
 
 
-*You will need to add jrpc.dll and xdevkit.dll to compile from source
+*You will need to add jrpc.dll (change JRPCPlusPlus to JRPC_Client in the project references) and xdevkit.dll to compile from source
 
 Images
 
