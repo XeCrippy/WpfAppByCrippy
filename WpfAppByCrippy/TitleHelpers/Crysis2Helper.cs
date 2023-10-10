@@ -14,12 +14,21 @@ namespace WpfAppByCrippy.TitleHelpers
         private readonly uint nop = 0x60000000;
         private readonly uint ammo_off = 0x90AB0004;
 
-        public void ExecuteStringInternal(string cmd)
+        /// <summary>
+        /// Sends console commands
+        /// </summary>
+        /// <param name="cmd">Ex: "cl_fov 55"</param>
+        public void ExecuteStringInternal(string cmd, bool fromConsole=false, bool silentMode=true)
         {
-            uint ptr = App.xb.ReadUInt32(0x83AC6E58);
-            App.xb.CallVoid(0x822D5B68, ptr, cmd, 0, 0);
+            uint arg1 = App.xb.ReadUInt32(0x83AC6E58);
+            App.xb.CallVoid(0x822D5B68, arg1, cmd, fromConsole, silentMode);
         }
 
+        /// <summary>
+        /// Stronger aim assist. This could probably use some work
+        /// </summary>
+        /// <param name="toggleButton">Name of the ToggleButton being used</param>
+        /// <returns>Aim Assist toggle state</returns>
         public bool AimAssist(ToggleButton toggleButton)
         {
             if (!aimAssist && App.activeConnection)
@@ -47,6 +56,11 @@ namespace WpfAppByCrippy.TitleHelpers
             return aimAssist;
         }
 
+        /// <summary>
+        /// This is not perfect and could use some work. Can still die while in a vehicle and possibly big enough explosions
+        /// </summary>
+        /// <param name="toggleButton">Name of the ToggleButton being used</param>
+        /// <returns>Demigod toggle state</returns>
         public bool Demigod(ToggleButton toggleButton)
         {
             uint pl_health_normal_threshold_time_to_regenerateSP = App.xb.ReadUInt32(0x403CC138);
@@ -77,6 +91,11 @@ namespace WpfAppByCrippy.TitleHelpers
             return godMode;
         }
 
+        /// <summary>
+        /// Infinite Ammunition
+        /// </summary>
+        /// <param name="toggleButton">Name of the ToggleButton being used</param>
+        /// <returns>InfiniteAmmo toggle state</returns>
         public bool InfiniteAmmo(ToggleButton toggleButton)
         {
             if (!infAmmo && App.activeConnection)

@@ -12,6 +12,10 @@ namespace WpfAppByCrippy.TitleHelpers
         private bool playerPos = false;
         private bool svCheats = false;
 
+        /// <summary>
+        /// Sends console commands
+        /// </summary>
+        /// <param name="command">Ex: "cl_showfps 1"</param>
         public static void Cbuf_AddText(string command)
         {
             App.xb.CallVoid(0x86BCDDB0, 0, command, 0);
