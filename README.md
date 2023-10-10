@@ -2,12 +2,13 @@
 This is just a simple wpf gui I started the other day and will probably never finish. 
 
 Currently supports: <br/>
-Crysis 2 <br/>
+Crysis 2 - TU5 (latest) <br/>
 Left 4 Dead 2 - TU6 (latest) <br/>
 Mortal Kombat Komplete Edition <br/>
 
 
-*You will need to add jrpc.dll (change JRPCPlusPlus to JRPC_Client in the project references) and xdevkit.dll to compile from source
+[*] You will need to add jrpc.dll and xdevkit.dll to compile
+[*] Change all references from JRPCPlusPlus to JRPC_Client (once you add jrpc.dll)
 
 Images
 
