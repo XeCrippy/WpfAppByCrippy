@@ -5,6 +5,8 @@ Currently supports: <br/>
 Crysis 2 - TU5 (latest) <br/>
 Left 4 Dead 2 - TU6 (latest) <br/>
 Mortal Kombat Komplete Edition <br/>
+Sleeping Dogs - TU1 <br/>
+Juiced 2 HIN - TU1 <br/>
 
 
 * You will need to add jrpc.dll and xdevkit.dll to compile
