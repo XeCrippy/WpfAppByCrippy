@@ -10,7 +10,7 @@
         WindowStyle="None" AllowsTransparency="True"
         MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#FF151515" BorderBrush="Firebrick" BorderThickness="1" ResizeMode="NoResize">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -53,11 +53,11 @@
                 <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
 
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                <Button x:Name="Juiced2Btn" Click="Juiced2Btn_Click" Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/juiced.jpg" Stretch="Fill"/>
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                <Button x:Name="SleepingDogsBtn" Click="SleepingDogsBtn_Click" Height="100" Width="100" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/sleepingdogs.jpg" Stretch="Fill"/>
                 </Button>
                 <Button  Height="100" Width="100" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
 

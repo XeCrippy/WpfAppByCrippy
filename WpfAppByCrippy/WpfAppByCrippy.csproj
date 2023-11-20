@@ -7,19 +7,23 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <PlatformTarget>x86</PlatformTarget>
+    <AssemblyVersion></AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Imgs\crysis2.png" />
+    <None Remove="Imgs\juiced.jpg" />
     <None Remove="Imgs\l4d.png" />
     <None Remove="Imgs\logosmall.png" />
     <None Remove="Imgs\mkkomplete.png" />
+    <None Remove="Imgs\sleepingdogs.jpg" />
     <None Remove="SplashScreenTest\xbaLogo3.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="icon.ico" />
     <Resource Include="Imgs\crysis2.png" />
+    <Resource Include="Imgs\juiced.jpg" />
     <Resource Include="Imgs\logosmall.png" />
     <Resource Include="Imgs\mkkomplete.png" />
   </ItemGroup>
@@ -35,10 +39,26 @@
 
   <ItemGroup>
     <Resource Include="Imgs\l4d.png" />
+    <Resource Include="Imgs\sleepingdogs.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <SplashScreen Include="SplashScreenTest\xbaLogo3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -6,9 +6,6 @@ namespace WpfAppByCrippy
 {
     public partial class MainWindow : Window
     {
-        private bool l4d2;
-        private bool mk;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -31,16 +28,7 @@ namespace WpfAppByCrippy
 
         private void L4D2Btn_Click(object sender, RoutedEventArgs e)
         {
-            if (!l4d2)
-            {
-                NavFrame1.Source= new Uri("Pages/L4D2.xaml", UriKind.RelativeOrAbsolute);
-                l4d2 = true;
-            }
-            else
-            {
-                NavFrame1.Content = null;
-                l4d2 = false;
-            }
+            NavFrame1.Source = new Uri("Pages/L4D2.xaml", UriKind.RelativeOrAbsolute);
         }
 
         private void ConnectBtn2_Click(object sender, RoutedEventArgs e)
@@ -60,21 +48,23 @@ namespace WpfAppByCrippy
 
         private void MKBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!mk)
-            {
-                NavFrame1.Source = new Uri("Pages/MortalKombatKompleteEdition.xaml", UriKind.RelativeOrAbsolute);
-                mk = true;
-            }
-            else
-            {
-                NavFrame1.Content = null;
-                mk = false;
-            }
+            NavFrame1.Source = new Uri("Pages/MortalKombatKompleteEdition.xaml", UriKind.RelativeOrAbsolute);
         }
 
         private void Crysis2Btn_Click(object sender, RoutedEventArgs e)
         {
             NavFrame1.Source = new Uri("Pages/Crysis2.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void Juiced2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame1.Source = new Uri("Pages/Juiced2Page.xaml", UriKind.RelativeOrAbsolute);
+            //NavFrame1.Source = new Uri("Pages/007Legends.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void SleepingDogsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame1.Source = new Uri("Pages/SleepingDogsPage.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }
