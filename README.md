@@ -5,8 +5,9 @@ Currently supports: <br/>
 Crysis 2 - TU5 (latest) <br/>
 Left 4 Dead 2 - TU6 (latest) <br/>
 Mortal Kombat Komplete Edition <br/>
-Sleeping Dogs - TU1 <br/>
-Juiced 2 HIN - TU1 <br/>
+Sleeping Dogs - TU1 (latest) <br/>
+Juiced 2 HIN - TU1 (latest) <br/>
+Resident Evil 6 - TU6 (latest) <br/>
 
 
 * You will need to add jrpc.dll and xdevkit.dll to compile
@@ -14,5 +15,5 @@ Juiced 2 HIN - TU1 <br/>
 
 Images
 
-<a href="https://gyazo.com/e14e92bac3e4e7f7aebaf7c6744ed635"><img src="https://i.gyazo.com/e14e92bac3e4e7f7aebaf7c6744ed635.png" alt="Image from Gyazo" width="605"/></a>
+<a href="https://gyazo.com/7e9b45aa90d994d56f1e2e63b8187ca1"><img src="https://i.gyazo.com/7e9b45aa90d994d56f1e2e63b8187ca1.png" alt="Image from Gyazo" width="603"/></a>
 <a href="https://gyazo.com/41ccce30ed6180fe8a26ed3a94b7c6dd"><img src="https://i.gyazo.com/41ccce30ed6180fe8a26ed3a94b7c6dd.gif" alt="Image from Gyazo" width="608"/></a>
