@@ -18,10 +18,6 @@ namespace WpfAppByCrippy
         public static string MsgBody { get; set; }
         public static string MsgTitle { get; set; }
 
-        /// <summary>
-        /// The main console connection across the entire program. Connects to default console in Xbox 360 Neighborhood
-        /// </summary>
-        /// <returns></returns>
         public static bool Connected()
         {
             try

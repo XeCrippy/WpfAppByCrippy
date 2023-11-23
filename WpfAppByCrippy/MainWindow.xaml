@@ -8,14 +8,15 @@
         Title="MainWindow" Height="600" Width="600" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None" AllowsTransparency="True"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#FF151515" BorderBrush="Firebrick" BorderThickness="1" ResizeMode="NoResize">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#FF151515" BorderBrush="Firebrick" BorderThickness="1" ResizeMode="NoResize" Loaded="Window_Loaded">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Height="590">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -50,24 +51,26 @@
                 <Button x:Name="Crysis2Btn" Click="Crysis2Btn_Click" Height="100" Width="100" Grid.Column="2" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
                     <Image Source="/Imgs/crysis2.png" Stretch="Fill"/>
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
-                </Button>
+               
                 <Button x:Name="Juiced2Btn" Click="Juiced2Btn_Click" Height="100" Width="100" Grid.Column="3" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
                     <Image Source="/Imgs/juiced.jpg" Stretch="Fill"/>
                 </Button>
                 <Button x:Name="SleepingDogsBtn" Click="SleepingDogsBtn_Click" Height="100" Width="100" Grid.Column="4" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
                     <Image Source="/Imgs/sleepingdogs.jpg" Stretch="Fill"/>
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                <Button x:Name="ResidentEvil6Btn" Click="ResidentEvil6Btn_Click" Height="100" Width="100" Grid.Column="5" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/R.png" Stretch="Fill"/>
                 </Button>
-                <Button  Height="100" Width="100" Grid.Column="6" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                <Button x:Name="SettingsBtn" Background="Firebrick" Click="SettingsBtn_Click"  Height="100" Width="100" Grid.Column="6" Style="{DynamicResource DefaultButton}" Margin="10" BorderBrush="Firebrick" ToolTip="Settings">
+                    <Image Source="/Imgs/settings.png" Stretch="Fill"/>
+                </Button>
+                <Button  Height="100" Width="100" Grid.Column="7" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
 
                 </Button>
             </Grid>
         </ScrollViewer>
         
         <Frame x:Name="NavFrame1" Grid.Row="2" Grid.ColumnSpan="2"  NavigationUIVisibility="Hidden" Padding="10" Margin="5,20,5,5"/>
+       
     </Grid>
 </Window>

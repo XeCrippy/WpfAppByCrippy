@@ -1,0 +1,75 @@
+﻿<Page x:Class="WpfAppByCrippy.Pages.ResidentEvil6Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppByCrippy.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="ResidentEvil6Page">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Margin="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Resident Evil 6" FontSize="14" FontWeight="Bold" Foreground="WhiteSmoke" Grid.ColumnSpan="2" Grid.Row="0" TextAlignment="Center" Margin="5"/>
+            <ToggleButton x:Name="GodBtn" Click="GodBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="God Mode" Margin="3" Grid.Column="0" Grid.Row="1"/>
+            <ToggleButton x:Name="AmmoBtn" Click="AmmoBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Infinite Ammo" Margin="3" Grid.Column="1" Grid.Row="1"/>
+            <ToggleButton x:Name="StaminaBtn" Click="StaminaBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Infinite Stamina" Margin="3" Grid.Column="0" Grid.Row="2"/>
+            <ToggleButton x:Name="FreezeTimerBtn" Click="FreezeTimerBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Freeze Mercs Timer" Margin="3" Grid.Column="1" Grid.Row="2"/>
+            <TextBox x:Name="MercScoreBox" Template="{DynamicResource TextBoxTemplate1}" Grid.Column="0" Grid.Row="3" Height="25" Foreground="WhiteSmoke" Margin="3" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <ToggleButton x:Name="MercScoreBtn" Click="MercScoreBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Set Mercs Score"  Margin="3" Grid.Column="1" Grid.Row="3"/>
+            <TextBox x:Name="MercKillsBox" Template="{DynamicResource TextBoxTemplate1}" Grid.Column="0" Grid.Row="4" Height="25" Foreground="WhiteSmoke" Margin="3" TextAlignment="Center" VerticalContentAlignment="Center"/>
+            <ToggleButton x:Name="MercKillsBtn" Click="MercKillsBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Set Mercs Kills" Margin="3" Grid.Column="1" Grid.Row="4"/>
+            <ToggleButton x:Name="MercTimerBtn" Click="MercTimerBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Set Mercs Timer To 1" Margin="3" Grid.ColumnSpan="2" Grid.Row="5" Width="306"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="3,10,3,3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Stats" Foreground="WhiteSmoke" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Row="0" TextAlignment="Center" Margin="5"/>
+            <TextBox x:Name="WeaponsStatsBox" Template="{DynamicResource TextBoxTemplate1}" Foreground="WhiteSmoke" Margin="3" TextAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Height="25" Width="150"/>
+            <ToggleButton x:Name="WeaponStatsBtn" Click="WeaponStatsBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Mod Weapon Stats" Grid.Column="1" Grid.Row="1" Margin="3"/>
+            <TextBox x:Name="EnemiesKilledBox" Template="{DynamicResource TextBoxTemplate1}" Foreground="WhiteSmoke" Margin="3" TextAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Height="25" />
+            <ToggleButton x:Name="EnemiesKilledBtn" Click="EnemiesKilledBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Mod Enemies Killed" Grid.Column="1" Grid.Row="2" Margin="3"/>
+            <TextBox x:Name="SkillPointsBox" Template="{DynamicResource TextBoxTemplate1}" Foreground="WhiteSmoke" Margin="3" TextAlignment="Center" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Height="25" Width="150"/>
+            <ToggleButton x:Name="SkillPointsBtn" Click="SkillPointsBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Set Skill Points" Grid.Column="1" Grid.Row="3" Margin="3"/>
+            <ToggleButton x:Name="MedalsBtn" Click="MedalsBtn_Click" Style="{DynamicResource ToggleButtonStyle1}" Content="Mod Medals" Grid.ColumnSpan="2" Grid.Row="4" Margin="3" Width="306"/>
+        </Grid>
+    </Grid>
+</Page>

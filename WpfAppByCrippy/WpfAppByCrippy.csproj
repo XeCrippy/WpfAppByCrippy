@@ -16,6 +16,8 @@
     <None Remove="Imgs\l4d.png" />
     <None Remove="Imgs\logosmall.png" />
     <None Remove="Imgs\mkkomplete.png" />
+    <None Remove="Imgs\R.png" />
+    <None Remove="Imgs\settings.png" />
     <None Remove="Imgs\sleepingdogs.jpg" />
     <None Remove="SplashScreenTest\xbaLogo3.png" />
   </ItemGroup>
@@ -39,6 +41,8 @@
 
   <ItemGroup>
     <Resource Include="Imgs\l4d.png" />
+    <Resource Include="Imgs\R.png" />
+    <Resource Include="Imgs\settings.png" />
     <Resource Include="Imgs\sleepingdogs.jpg" />
   </ItemGroup>
 
