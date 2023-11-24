@@ -1,4 +1,5 @@
 ﻿using JRPCPlusPlus;
+using System;
 using System.Threading;
 using System.Windows.Controls.Primitives;
 
@@ -14,14 +15,23 @@ namespace WpfAppByCrippy.TitleHelpers
         private readonly uint nop = 0x60000000;
         private readonly uint ammo_off = 0x90AB0004;
 
+        // Constants for Xbox memory addresses
+        const uint cxconsolePtr = 0x83AC6E58;
+        const uint executeStringInternal = 0x822D5B68;
+
         /// <summary>
-        /// Sends console commands
+        /// Sends console commands to Xbox.
         /// </summary>
-        /// <param name="cmd">Ex: "cl_fov 55"</param>
-        public void ExecuteStringInternal(string cmd, bool fromConsole=false, bool silentMode=true)
+        /// <param name="cmd">Example: "cl_fov 55"</param>
+        /// <param name="fromConsole">Indicates whether the command originates from the console.</param>
+        /// <param name="silentMode">Indicates whether to execute the command in silent mode.</param>
+        public void ExecuteStringInternal(string cmd, bool fromConsole=true, bool silentMode=false)
         {
-            uint arg1 = App.xb.ReadUInt32(0x83AC6E58);
-            App.xb.CallVoid(0x822D5B68, arg1, cmd, fromConsole, silentMode);
+            // Retrieve the console pointer from Xbox memory
+            uint arg1 = App.xb.ReadUInt32(cxconsolePtr);
+
+            // Call the Xbox method to execute the command
+            App.xb.CallVoid(executeStringInternal, arg1, cmd, fromConsole, silentMode);
         }
 
         /// <summary>
@@ -31,29 +41,97 @@ namespace WpfAppByCrippy.TitleHelpers
         /// <returns>Aim Assist toggle state</returns>
         public bool AimAssist(ToggleButton toggleButton)
         {
-            if (!aimAssist && App.activeConnection)
+            const int shortDelayMilliseconds = 250;
+            const string aimAssistOnCommands = "aim_assistFalloffDistance 9999;aim_assistGlidingMultiplier 99;aim_assistMaxDistance 9999;aim_assistMaxDistanceTagged 9999";
+            const string aimAssistOffCommands = "aim_assistFalloffDistance 50;aim_assistGlidingMultiplier 2;aim_assistMaxDistance 50;aim_assistMaxDistanceTagged 50";
+
+            try
             {
-                ExecuteStringInternal("aim_assistFalloffDistance 9999;aim_assistGlidingMultiplier 99;aim_assistMaxDistance 9999;aim_assistMaxDistanceTagged 9999");
-                Thread.Sleep(500);
-                ExecuteStringInternal("aim_assistMaxDistance_IronSight 9999;aim_assistMinDistance 0;aim_assistSnapRadiusScale 30;aim_assistSnapRadiusTaggedScale 30;aim_assistStrength 99;aim_assistStrength_IronSight 99");
-                aimAssist = true;
-                App.ToggleBtn_on(toggleButton);
+                if (App.activeConnection)
+                {
+                    string commands;
+                    if (!aimAssist)
+                    {
+                        commands = aimAssistOnCommands;
+                        aimAssist = true;
+                    }
+                    else
+                    {
+                        commands = aimAssistOffCommands;
+                        aimAssist = false;
+                    }
+
+                    // Configure basic aim assist settings
+                    ConfigureAimAssist(commands);
+                    Thread.Sleep(shortDelayMilliseconds);
+
+                    // Further configure aim assist for IronSight
+                    ConfigureAimAssist("aim_assistMaxDistance_IronSight 9999;aim_assistMinDistance 0;aim_assistSnapRadiusScale 30;aim_assistSnapRadiusTaggedScale 30;aim_assistStrength 99;aim_assistStrength_IronSight 99");
+
+                    // Toggle the button state based on aimAssist
+                    App.ToggleButtonState(aimAssist, toggleButton);
+                }
+                else
+                {
+                    // Handle connection error
+                    App.ConnectionError();
+                    aimAssist = false;
+                    App.ToggleButtonState(aimAssist, toggleButton);
+                }
             }
-            else if (!App.activeConnection)
+            catch (Exception ex)
             {
-                App.ConnectionError();
-                aimAssist = false;
-                App.ToggleBtn_off(toggleButton);
+                // Handle or log the exception using App.Error
+                App.Error(ex);
+            }
+
+            return aimAssist;
+        }
+
+
+
+        private void ConfigureAimAssist(string commands)
+        {
+            ExecuteStringInternal(commands);
+        }
+
+        private void ApplyDemigodSettings(uint thresholdTimeAddress, uint regenerationRateAddress, ToggleButton toggleButton)
+        {
+            // Xbox memory addresses
+            uint plHealthNormalThresholdTimeToRegenerateSP = App.xb.ReadUInt32(thresholdTimeAddress);
+            uint plHealthNormalRegenerationRateSP = App.xb.ReadUInt32(regenerationRateAddress);
+
+            // Constants for magic numbers
+            const float MaxRegenerationRate = 9999;
+            const float MinThresholdTimeToRegenerate = 0;
+            const float DefaultRegenerationRate = 2;
+            const float DefaultThresholdTimeToRegenerate = 15.0f;
+
+            if (App.activeConnection)
+            {
+                if (!godMode)
+                {
+                    // Apply settings for god mode
+                    App.xb.WriteFloat(plHealthNormalRegenerationRateSP, MaxRegenerationRate);
+                    App.xb.WriteFloat(plHealthNormalThresholdTimeToRegenerateSP, MinThresholdTimeToRegenerate);
+                    godMode = true;
+                    App.ToggleButtonState(true, toggleButton);
+                }
+                else
+                {
+                    // Apply default settings
+                    App.xb.WriteFloat(plHealthNormalRegenerationRateSP, DefaultRegenerationRate);
+                    App.xb.WriteFloat(plHealthNormalThresholdTimeToRegenerateSP, DefaultThresholdTimeToRegenerate);
+                    godMode = false;
+                    App.ToggleButtonState(false, toggleButton);
+                }
             }
             else
             {
-                ExecuteStringInternal("aim_assistFalloffDistance 50;aim_assistGlidingMultiplier 2;aim_assistMaxDistance 50;aim_assistMaxDistanceTagged 50");
-                Thread.Sleep(500);
-                ExecuteStringInternal("aim_assistMaxDistance_IronSight 50;aim_assistMinDistance 0;aim_assistSnapRadiusScale 1;aim_assistSnapRadiusTaggedScale 1;aim_assistStrength 0.5;aim_assistStrength_IronSight 0.5");
-                aimAssist = false;
-                App.ToggleBtn_off(toggleButton);
+                App.ConnectionError();
+                godMode = false;
+                App.ToggleButtonState(false, toggleButton);
             }
-            return aimAssist;
         }
 
         /// <summary>
@@ -63,31 +141,12 @@ namespace WpfAppByCrippy.TitleHelpers
         /// <returns>Demigod toggle state</returns>
         public bool Demigod(ToggleButton toggleButton)
         {
-            uint pl_health_normal_threshold_time_to_regenerateSP = App.xb.ReadUInt32(0x403CC138);
-            uint pl_health_normal_regeneration_rateSP = App.xb.ReadUInt32(0x403CC170);
+            const uint plHealthNormalThresholdTimeToRegenerateSPAddress = 0x403CC138;
+            const uint plHealthNormalRegenerationRateSPAddress = 0x403CC170;
 
-            if (!godMode && App.activeConnection)
-            {
-                App.xb.WriteFloat(pl_health_normal_regeneration_rateSP, 9999);
-                App.xb.WriteFloat(pl_health_normal_threshold_time_to_regenerateSP, 0);
-                godMode = true;
-                App.ToggleBtn_on(toggleButton);
-            }
+            // Xbox memory related logic
+            ApplyDemigodSettings(plHealthNormalThresholdTimeToRegenerateSPAddress, plHealthNormalRegenerationRateSPAddress, toggleButton);
 
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                godMode = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-
-            else
-            {
-                App.xb.WriteUInt32(pl_health_normal_regeneration_rateSP, 2);
-                App.xb.WriteFloat(pl_health_normal_threshold_time_to_regenerateSP, 15.0f);
-                godMode = false;
-                App.ToggleBtn_off(toggleButton);
-            }
             return godMode;
         }
 
@@ -98,26 +157,18 @@ namespace WpfAppByCrippy.TitleHelpers
         /// <returns>InfiniteAmmo toggle state</returns>
         public bool InfiniteAmmo(ToggleButton toggleButton)
         {
-            if (!infAmmo && App.activeConnection)
+            if (App.activeConnection)
             {
-                App.xb.WriteUInt32(ammo, nop);
-                infAmmo = true;
-                App.ToggleBtn_on(toggleButton);
+                infAmmo = !infAmmo; // Toggle ammo state
+                App.xb.WriteUInt32(ammo, infAmmo ? nop : ammo_off); // Use infAmmo state for the condition
             }
-
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                infAmmo = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-
             else
             {
-                App.xb.WriteUInt32(ammo, ammo_off);
-                infAmmo = false;
-                App.ToggleBtn_off(toggleButton);
+                infAmmo = false; // Ensure ammo is off if there's no active connection
+                App.ConnectionError();
             }
+
+            App.ToggleButtonState(infAmmo, toggleButton); // Use infAmmo state for ToggleBtn
             return infAmmo;
         }
     }

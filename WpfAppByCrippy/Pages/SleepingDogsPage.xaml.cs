@@ -23,7 +23,7 @@ namespace WpfAppByCrippy.Pages
             {
                 if (App.activeConnection)
                 {
-                    helper.MaxPlayerHealth();
+                    helper.SetPlayerHealth(9999999.0f);
                 }
                 else App.ConnectionError();
             }

@@ -22,9 +22,11 @@ namespace WpfAppByCrippy
         {
             try
             {
-                if (xb.Connect(out xb))
+                IXboxConsole newConnection = xb;
+                if (newConnection.Connect(out newConnection))
                 {
                     activeConnection = true;
+                    xb = newConnection;  // Update the xb reference
                     return true;
                 }
                 else
@@ -33,9 +35,11 @@ namespace WpfAppByCrippy
                     return false;
                 }
             }
-            catch 
+            catch (Exception ex)
             {
-                activeConnection=false;
+                // Log or handle the exception appropriately
+                Error(ex);
+                activeConnection = false;
                 return false;
             }
         }
@@ -104,6 +108,20 @@ namespace WpfAppByCrippy
             MsgBody = msg;
             var msgBox = new MsgBox.MsgBox(); 
             msgBox.ShowDialog();
+        }
+
+        public static void ToggleButtonState(bool state, ToggleButton toggleButton)
+        {
+            if (state)
+            {
+                toggleButton.Background = Brushes.Firebrick;
+                toggleButton.BorderBrush = Brushes.Firebrick;
+            }
+            else
+            {
+                toggleButton.Background = new SolidColorBrush(Color.FromArgb(0xff, 0x20, 0x20, 0x20));
+                toggleButton.BorderBrush = Brushes.Firebrick;
+            }
         }
 
         /// <summary>

@@ -21,72 +21,53 @@ namespace WpfAppByCrippy.TitleHelpers
             App.xb.CallVoid(0x86BCDDB0, 0, command, 0);
         }
 
-        public bool FpsCounter(ToggleButton toggleButton)
+        private bool ToggleCvarState(bool currentState, ToggleButton toggleButton, string command, string enabledMessage, string disabledMessage)
         {
-            if (!fpsCounter && App.activeConnection) 
+            if (App.activeConnection)
             {
-                Cbuf_AddText("cl_showfps 4;say FPS Counter Enabled");
-                fpsCounter = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                fpsCounter = false;
-                App.ToggleBtn_off(toggleButton);
+                Cbuf_AddText($"{command} {(currentState ? "0" : "1")};say {(currentState ? disabledMessage : enabledMessage)}");
+                currentState = !currentState;
+                App.ToggleButtonState(currentState, toggleButton);
             }
             else
             {
-                Cbuf_AddText("cl_showfps 0;say FPS Counter Disabled");
+                App.ConnectionError();
+                currentState = false;
+                App.ToggleButtonState(currentState, toggleButton);
+            }
+
+            return currentState;
+        }
+
+        public bool FpsCounter(ToggleButton toggleButton)
+        {
+            const string enableFpsCounterCommand = "cl_showfps 4;say FPS Counter Enabled";
+            const string disableFpsCounterCommand = "cl_showfps 0;say FPS Counter Disabled";
+
+            if (App.activeConnection)
+            {
+                Cbuf_AddText(fpsCounter ? disableFpsCounterCommand : enableFpsCounterCommand);
+                fpsCounter = !fpsCounter;
+                App.ToggleButtonState(fpsCounter, toggleButton);
+            }
+            else
+            {
+                App.ConnectionError();
                 fpsCounter = false;
-                App.ToggleBtn_off(toggleButton);
+                App.ToggleButtonState(fpsCounter, toggleButton);
             }
             return fpsCounter;
         }
 
         public bool GodMode(ToggleButton toggleButton)
         {
-            if (!godMode && App.activeConnection)
-            {
-                Cbuf_AddText("god 1;say God Mode Enabled");
-                godMode = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                godMode = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-            else
-            {
-                Cbuf_AddText("god 0;say God Mode Disabled");
-                godMode = false;
-                App.ToggleBtn_off(toggleButton);
-            }
+            godMode = ToggleCvarState(godMode, toggleButton, "god", "God Mode Enabled", "God Mode Disabled");
             return godMode;
         }
 
         public bool InfiniteAmmo(ToggleButton toggleButton)
         {
-            if(!infAmmo && App.activeConnection)
-            {
-                Cbuf_AddText("sv_infinite_ammo 1;say Infinite Ammo Enabled");
-                infAmmo = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                infAmmo = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-            else
-            {
-                Cbuf_AddText("sv_infinite_ammo 0;say Infinite Ammo Disabled");
-                infAmmo = false;
-                App.ToggleBtn_off(toggleButton);
-            }
+            infAmmo = ToggleCvarState(infAmmo, toggleButton, "sv_infinite_ammo", "Infinite Ammo Enabled", "Infinite Ammo Disabled");
             return infAmmo;
         }
 
@@ -99,70 +80,33 @@ namespace WpfAppByCrippy.TitleHelpers
 
         public bool PlayerPosition(ToggleButton toggleButton)
         {
-            if (!playerPos && App.activeConnection)
-            {
-                Cbuf_AddText("cl_showpos 1;say Show Position Enabled");
-                playerPos = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                playerPos = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-            else
-            {
-                Cbuf_AddText("cl_showpos 0;say Show Position Disabled");
-                playerPos = false;
-                App.ToggleBtn_off(toggleButton);
-            }
+            playerPos = ToggleCvarState(playerPos, toggleButton, "cl_showpos", "Show Position Enabled", "Show Position Disabled");
             return playerPos;
         }
 
         public bool ShowGraphs(ToggleButton toggleButton)
         {
-            if (!graphs && App.activeConnection)
+            string enableGraphsCommand = "+graph;say Show Performance Graphs Enabled";
+            string disableGraphscommand = "-graph;say Show Performance Graphs Disabled";
+
+            if (App.activeConnection)
             {
-                Cbuf_AddText("+graph;say Show Graphs Enabled");
-                graphs = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                graphs = false;
-                App.ToggleBtn_off(toggleButton);
+                Cbuf_AddText(graphs ? disableGraphscommand : enableGraphsCommand);
+                graphs = !graphs;
+                App.ToggleButtonState(graphs, toggleButton);
             }
             else
             {
-                Cbuf_AddText("-graph;say Show Graphs Disabled");
+                App.ConnectionError();
                 graphs = false;
-                App.ToggleBtn_off(toggleButton);
+                App.ToggleButtonState(graphs, toggleButton);
             }
             return graphs;
         }
 
         public bool SV_Cheats(ToggleButton toggleButton)
         {
-            if (!svCheats&& App.activeConnection)
-            {
-                Cbuf_AddText("sv_cheats 1;say SV Cheats Enabled");
-                svCheats = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                svCheats = false;
-                App.ToggleBtn_off(toggleButton);
-            }
-            else
-            {
-                Cbuf_AddText("sv_cheats 0;say SV Cheats Disabled");
-                svCheats = false;
-                App.ToggleBtn_off(toggleButton);
-            }
+            svCheats = ToggleCvarState(svCheats, toggleButton, "sv_cheats", "SV Cheats Enabled", "SV Cheats Disabled");
             return svCheats;
         }
     }

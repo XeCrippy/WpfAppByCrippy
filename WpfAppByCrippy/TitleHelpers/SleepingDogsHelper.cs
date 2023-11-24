@@ -14,34 +14,50 @@ namespace WpfAppByCrippy.TitleHelpers
 
         public void AddMoney(TextBox moneyBox)
         {
-            uint currentMoney = App.xb.ReadUInt32(GetMoneyAddress());
-            App.xb.WriteUInt32(GetMoneyAddress(), currentMoney + uint.Parse(moneyBox.Text));
+            if (uint.TryParse(moneyBox.Text, out uint moneyToAdd))
+            {
+                uint currentMoney = App.xb.ReadUInt32(GetMoneyAddress());
+                App.xb.WriteUInt32(GetMoneyAddress(), currentMoney + moneyToAdd);
+            }
+            else
+            {
+                // Handle invalid input (non-numeric) in moneyBox, e.g., display an error message.
+                App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
+            }
+        }
+
+        private uint GetAddressFromOffset(uint baseAddress, uint offset)
+        {
+            return App.xb.ReadUInt32(baseAddress) + offset;
         }
 
         private uint GetHealthAddress()
         {
-            return App.xb.ReadUInt32(playerPtr) + healthOffset;
+            return GetAddressFromOffset(playerPtr, healthOffset);
         }
 
         private uint GetMaxHealthAddress()
         {
-            return App.xb.ReadUInt32(playerPtr) + maxHealthOffset;
+            return GetAddressFromOffset(playerPtr, maxHealthOffset);
         }
 
         private uint GetMoneyAddress()
         {
-            return App.xb.ReadUInt32(moneyPtr) + moneyOffset;
+            return GetAddressFromOffset(moneyPtr, moneyOffset);
         }
 
         private uint GetPlayerStruct()
         {
-            return App.xb.ReadUInt32(playerPtr) + playerPtrOffset;
+            return GetAddressFromOffset(playerPtr, playerPtrOffset);
         }
 
-        public void MaxPlayerHealth()
+        public void SetPlayerHealth(float healthValue)
         {
-            App.xb.WriteFloat(GetMaxHealthAddress(), 9999999.0f);
-            App.xb.CallVoid(0x82793720, GetPlayerStruct(), 9999999u, 0);
+            // Set max health
+            App.xb.WriteFloat(GetMaxHealthAddress(), healthValue);
+
+            // Set current health
+            App.xb.CallVoid(0x82793720, GetPlayerStruct(), healthValue, 0);
         }
     }
 }

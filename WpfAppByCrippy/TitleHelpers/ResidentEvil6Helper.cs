@@ -1,4 +1,5 @@
 ﻿using JRPCPlusPlus;
+using System;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -91,93 +92,75 @@ namespace WpfAppByCrippy.TitleHelpers
 
         public bool FreezeMercTimer(ToggleButton toggleButton)
         {
-            if (!timer && App.activeConnection)
-            {
-                App.xb.WriteUInt32(freezeMercTimer, mercTimerOn);
-                App.ToggleBtn_on(toggleButton);
-                timer = true;
-            }
-            else if (!App.activeConnection)
+            if (!App.activeConnection)
             {
                 App.ConnectionError();
-                App.ToggleBtn_off(toggleButton);
-                timer = false;
+                ToggleTimerState(false, toggleButton);
             }
             else
             {
-                App.xb.WriteUInt32(freezeMercTimer, mercTimerOff);
-                App.ToggleBtn_off(toggleButton);
-                timer = false;
+                ToggleTimerState(timer, toggleButton);
+                timer = !timer;
             }
+
             return timer;
+        }
+
+        private void ToggleTimerState(bool isTimerOn, ToggleButton toggleButton)
+        {
+            App.xb.WriteUInt32(freezeMercTimer, isTimerOn ? mercTimerOff : mercTimerOn);
+            App.ToggleButtonState(isTimerOn, toggleButton);
         }
 
         public bool GodMode(ToggleButton toggleButton)
         {
-            if (!god && App.activeConnection)
+            if (App.activeConnection)
             {
-                App.xb.WriteUInt32(godmodeAddr, godOn);
-                god = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                App.ToggleBtn_off(toggleButton);
-                god = false;
+                god = !god; // Toggle god mode
+                App.xb.WriteUInt32(godmodeAddr, god ? godOn : godOff);
+                App.ToggleButtonState(god, toggleButton);
             }
             else
             {
-                App.xb.WriteUInt32(godmodeAddr, godOff);
-                god = false;
-                App.ToggleBtn_off(toggleButton);
+                god = false; // Ensure god mode is off if there's no active connection
+                App.ConnectionError();
             }
+
+            App.ToggleButtonState(god, toggleButton); // Update toggle button regardless of the connection status
             return god;
         }
 
         public bool InfiniteAmmo(ToggleButton toggleButton)
         {
-            if (!ammo && App.activeConnection)
+            if (App.activeConnection)
             {
-                App.xb.WriteUInt32(ammoAddr, ammoOn); 
-                ammo = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                ammo = false;
-                App.ToggleBtn_off(toggleButton);
+                ammo = !ammo; // Toggle ammo state
+                App.xb.WriteUInt32(ammoAddr, ammo ? ammoOn : ammoOff);
             }
             else
             {
-                App.xb.WriteUInt32(ammoAddr, ammoOff);
-                ammo = false;
-                App.ToggleBtn_off(toggleButton);
+                ammo = false; // Ensure ammo is off if there's no active connection
+                App.ConnectionError();
             }
+
+            App.ToggleButtonState(ammo, toggleButton);
             return ammo;
         }
 
         public bool InfiniteStamina(ToggleButton toggleButton)
         {
-            if (!stamina && App.activeConnection)
+            if (App.activeConnection)
             {
-                App.xb.WriteUInt32(staminaAddr, staminaOn);
-                stamina = true;
-                App.ToggleBtn_on(toggleButton);
-            }
-            else if (!App.activeConnection)
-            {
-                App.ConnectionError();
-                stamina = false;
-                App.ToggleBtn_off(toggleButton);
+                stamina = !stamina; // Toggle stamina state
+                App.xb.WriteUInt32(staminaAddr, stamina ? staminaOn : staminaOff);
             }
             else
             {
-                App.xb.WriteUInt32(staminaAddr, staminaOff);
-                stamina = false;
-                App.ToggleBtn_off(toggleButton);
+                stamina = false; // Ensure stamina is off if there's no active connection
+                App.ConnectionError();
             }
+
+            App.ToggleButtonState(stamina, toggleButton);
             return stamina;
         }
 
@@ -185,29 +168,39 @@ namespace WpfAppByCrippy.TitleHelpers
         {
             if (App.activeConnection)
             {
-                for (int i = 0; i < medalsLengthAgentHunt; ++i)
-                {
-                    App.xb.WriteByte(AgentHuntMedalsEntry(i), 0xFF);
-                }
-                for (int i = 0; i <medalsLengthCampaigns; ++i)
-                {
-                    App.xb.WriteByte(CampaignMedalsEntry(i), 0xFF);
-                }
-                for (int i = 0; i <medalsLengthMercs; ++i)
-                {
-                    App.xb.WriteByte(MercMedalsEntry(i), 0xFF);
-                }
+                ModMedalEntries(AgentHuntMedalsEntry, (int)medalsLengthAgentHunt);
+                ModMedalEntries(CampaignMedalsEntry, (int)medalsLengthCampaigns);
+                ModMedalEntries(MercMedalsEntry, (int)medalsLengthMercs);
             }
-            else App.ConnectionError();
+            else
+            {
+                App.ConnectionError();
+            }
+        }
+
+        private static void ModMedalEntries(Func<int, uint> getMedalEntry, int medalsLength)
+        {
+            for (int i = 0; i < medalsLength; ++i)
+            {
+                App.xb.WriteByte(getMedalEntry(i), 0xFF);
+            }
         }
 
         public void SetEnemiesKilled(TextBox enemiesKilledBox)
         {
             if (App.activeConnection)
             {
-                for (int i = 0; i < enemiesLength; ++i)
+                if (uint.TryParse(enemiesKilledBox.Text, out uint value))
                 {
-                    App.xb.WriteUInt32(EnemyKillsAddr(i), uint.Parse(enemiesKilledBox.Text));
+                    for (int i = 0; i < enemiesLength; ++i)
+                    {
+                        App.xb.WriteUInt32(EnemyKillsAddr(i), value);
+                    }
+                }
+                else
+                {
+                    // Handle parsing error, e.g., display an error message to the user.
+                    App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
                 }
             }
             else App.ConnectionError();
@@ -217,7 +210,15 @@ namespace WpfAppByCrippy.TitleHelpers
         {
             if (App.activeConnection)
             {
-                App.xb.WriteUInt32(mercKills, uint.Parse(killsBox.Text));
+                if (uint.TryParse(killsBox.Text, out uint value))
+                {
+                    App.xb.WriteUInt32(mercKills, value);
+                }
+                else
+                {
+                    // Handle parsing error, e.g., display an error message to the user.
+                    App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
+                }
             }
             else App.ConnectionError();
         }
@@ -226,40 +227,77 @@ namespace WpfAppByCrippy.TitleHelpers
         {
             if (App.activeConnection)
             {
-                App.xb.WriteUInt32(mercScore, uint.Parse(scoreBox.Text));
+                if (uint.TryParse(scoreBox.Text, out uint value))
+                {
+                    App.xb.WriteUInt32(mercScore, value);
+                }
+                else
+                {
+                    // Handle parsing error, e.g., display an error message to the user.
+                    App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
+                }
             }
-            else App.ConnectionError();
+            else
+            {
+                App.ConnectionError();
+            }
         }
 
         public void SetSkillPoints(TextBox skillPointsBox)
         {
             if (App.activeConnection)
             {
-                uint value = uint.Parse(skillPointsBox.Text);
-                App.xb.CallVoid(0x82AFAB80, 0x47590060, value);
+                if (uint.TryParse(skillPointsBox.Text, out uint value))
+                {
+                    App.xb.CallVoid(0x82AFAB80, 0x47590060, value);
+                }
+                else
+                {
+                    // Handle parsing error, e.g., display an error message to the user.
+                    App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
+                }
             }
-            else App.ConnectionError();
+            else
+            {
+                App.ConnectionError();
+            }
         }
 
         public void SetWeaponStats(TextBox weaponStatsBox)
         {
             if (App.activeConnection)
             {
-                uint value = uint.Parse(weaponStatsBox.Text);
-                for (int i = 0; i < weaponsLength; i++)
+                if (uint.TryParse(weaponStatsBox.Text, out uint value))
                 {
-                    App.xb.WriteUInt32(WeaponsEntryAddr(i), value);
-                    App.xb.WriteUInt32(TimesKilledEnemyWithWeapon(i), value);
-                    App.xb.WriteUInt32(Reloads(i), value);
-                    App.xb.WriteUInt32(Quickshots(i), value);
-                    App.xb.WriteUInt32(Headshots(i), value);
+                    for (int i = 0; i < weaponsLength; i++)
+                    {
+                        SetWeaponStat(WeaponsEntryAddr(i), value);
+                        SetWeaponStat(TimesKilledEnemyWithWeapon(i), value);
+                        SetWeaponStat(Reloads(i), value);
+                        SetWeaponStat(Quickshots(i), value);
+                        SetWeaponStat(Headshots(i), value);
+                    }
+                }
+                else
+                {
+                    // Handle invalid input, e.g., display an error message.
+                    App.XMessageBox("Invalid Input", "The value you entered is not a valid 32 bit unsigned integer");
                 }
             }
-            else App.ConnectionError();
+            else
+            {
+                App.ConnectionError();
+            }
+        }
+
+        private void SetWeaponStat(uint address, uint value)
+        {
+            App.xb.WriteUInt32(address, value);
         }
 
         public void ZeroMercTimer()
         {
+            // Sets the Mercenaries timer to 1 second instantly ending the match
             if (App.activeConnection)
             {
                 App.xb.WriteFloat(mercTimer, 1.0f);
