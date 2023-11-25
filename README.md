@@ -8,6 +8,7 @@ Mortal Kombat Komplete Edition <br/>
 Sleeping Dogs - TU1 (latest) <br/>
 Juiced 2 HIN - TU1 (latest) <br/>
 Resident Evil 6 - TU6 (latest) <br/>
+Forza Motorsport 2 - latest <br/>
 
 
 * You will need to add jrpc.dll and xdevkit.dll to compile
