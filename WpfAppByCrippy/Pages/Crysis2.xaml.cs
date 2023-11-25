@@ -20,7 +20,10 @@ namespace WpfAppByCrippy.Pages
             {
                 helper.Demigod(DemigodBtn);
             }
-            catch (Exception ex) { App.Error(ex); }
+            catch (Exception ex)
+            { 
+                App.Error("Crysis 2 : Demigod", ex);
+            }
         }
 
         private void AmmoBtn_Click(object sender, RoutedEventArgs e)
@@ -29,7 +32,10 @@ namespace WpfAppByCrippy.Pages
             {
                 helper.InfiniteAmmo(AmmoBtn);
             }
-            catch (Exception ex) { App.Error(ex); }
+            catch (Exception ex) 
+            { 
+                App.Error("Crysis 2 : Infinite Ammo", ex); 
+            }
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -47,7 +53,10 @@ namespace WpfAppByCrippy.Pages
                 }
                 else App.ConnectionError();
             }
-            catch(Exception ex) { App.Error(ex); }
+            catch(Exception ex) 
+            { 
+                App.Error("Crysis 2 : Send Command", ex);
+            }
         }
 
         private void FovBtn_Click(object sender, RoutedEventArgs e)
@@ -60,7 +69,10 @@ namespace WpfAppByCrippy.Pages
                 }
                 else App.ConnectionError();
             }
-            catch(Exception ex) { App.Error(ex); }
+            catch(Exception ex)
+            { 
+                App.Error("Crysis 2 : FOV", ex);
+            }
         }
 
         private void AimAssistBtn_Click(object sender, RoutedEventArgs e)
@@ -69,7 +81,10 @@ namespace WpfAppByCrippy.Pages
             {
                 helper.AimAssist(AimAssistBtn);
             }
-            catch (Exception ex) { App.Error(ex); }
+            catch (Exception ex) 
+            { 
+                App.Error("Crysis 2 : Aim Assist", ex);
+            }
         }
     }
 }

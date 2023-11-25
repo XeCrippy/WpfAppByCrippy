@@ -3,7 +3,9 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
 using System.Windows.Media;
+using WpfAppByCrippy.Logging;
 using XDevkit;
 
 namespace WpfAppByCrippy
@@ -38,7 +40,7 @@ namespace WpfAppByCrippy
             catch (Exception ex)
             {
                 // Log or handle the exception appropriately
-                Error(ex);
+                Error("Main Connection", ex);
                 activeConnection = false;
                 return false;
             }
@@ -83,7 +85,7 @@ namespace WpfAppByCrippy
         /// *Note: the e.Message can be changed to e.ToString() to see the entire exception 
         /// </summary>
         /// <param name="e">Ex: e.Message | e.ToString()</param>
-        public static void Error(Exception e)
+        public static void Error(string methodName, Exception e)
         {
             MsgTitle = e.GetType().ToString();
             MsgBody = e.Message;
@@ -95,6 +97,15 @@ namespace WpfAppByCrippy
                 dbgConnection = false;
                 activeConnection = false;
             }
+            Logger.LogError(methodName, e);
+        }
+
+        public static void ParsingError()
+        {
+            MsgTitle = "Invalid Input";
+            MsgBody = "The value you entered is not a valid 32 bit unsigned integer";
+            var msgBox = new MsgBox.MsgBox();
+            msgBox.ShowDialog();
         }
 
         /// <summary>

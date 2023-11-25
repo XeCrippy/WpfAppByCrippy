@@ -82,7 +82,7 @@ namespace WpfAppByCrippy.TitleHelpers
             catch (Exception ex)
             {
                 // Handle or log the exception using App.Error
-                App.Error(ex);
+                App.Error("Crysis 2 : Aim Assist", ex);
             }
 
             return aimAssist;
@@ -101,11 +101,11 @@ namespace WpfAppByCrippy.TitleHelpers
             uint plHealthNormalThresholdTimeToRegenerateSP = App.xb.ReadUInt32(thresholdTimeAddress);
             uint plHealthNormalRegenerationRateSP = App.xb.ReadUInt32(regenerationRateAddress);
 
-            // Constants for magic numbers
-            const float MaxRegenerationRate = 9999;
-            const float MinThresholdTimeToRegenerate = 0;
-            const float DefaultRegenerationRate = 2;
-            const float DefaultThresholdTimeToRegenerate = 15.0f;
+            
+            float MaxRegenerationRate = 9999;
+            float MinThresholdTimeToRegenerate = 0;
+            float DefaultRegenerationRate = 2;
+            float DefaultThresholdTimeToRegenerate = 15.0f;
 
             if (App.activeConnection)
             {

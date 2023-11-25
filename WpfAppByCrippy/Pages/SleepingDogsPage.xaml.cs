@@ -27,7 +27,7 @@ namespace WpfAppByCrippy.Pages
                 }
                 else App.ConnectionError();
             }
-            catch (Exception ex) { App.Error(ex); }
+            catch (Exception ex) { App.Error("Sleeping Dogs : Set Health", ex); }
         }
 
         private void MoneyBtn_Click(object sender, RoutedEventArgs e)
@@ -40,7 +40,7 @@ namespace WpfAppByCrippy.Pages
                 }
                 else App.ConnectionError();
             }
-            catch(Exception ex) { App.Error(ex); }
+            catch(Exception ex) { App.Error("Sleeping Dogs : Set Money", ex); }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JRPCPlusPlus;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using XDevkit;
@@ -21,7 +22,7 @@ namespace WpfAppByCrippy.Pages
         /// <param name="Addr">The address you want to breakpoint</param>
         /// <param name="cmpValue">Pointer you are using to compare</param>
         /// <param name="cmpRegister">The register where the compare pointer is stored</param>
-        private void MortalKombatTest(uint Addr, uint cmpValue, XboxRegisters64 cmpRegister) // compare value (player pointer) = 1  compare register = r4
+      /*  private void MortalKombatTest(uint Addr, uint cmpValue, XboxRegisters64 cmpRegister) // compare value (player pointer) = 1  compare register = r4
         {
             try
             {
@@ -51,6 +52,65 @@ namespace WpfAppByCrippy.Pages
                 else App.ConnectionError();
             }
             catch { }
+        }*/
+
+        private async void MortalKombatTest(uint breakpointAddress, uint expectedRegisterValue, XboxRegisters64 comparisonRegister)
+        {
+            try
+            {
+                if (App.dbgConnection)
+                {
+                    await ConnectAndHandleBreakpointAsync(breakpointAddress, expectedRegisterValue, comparisonRegister);
+                }
+                else
+                {
+                    App.ConnectionError();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception as needed
+                App.Error("Mortal Kombat : God Mode / One Hit Kill", ex);
+            }
+        }
+
+        private async Task ConnectAndHandleBreakpointAsync(uint breakpointAddress, uint expectedRegisterValue, XboxRegisters64 comparisonRegister)
+        {
+            if (App.xbdbg.DebugTarget.IsDebuggerConnected(out string dbgName, out string usrName) == false)
+            {
+                App.xbdbg.DebugTarget.ConnectAsDebugger("XB360Anarchy", XboxDebugConnectFlags.Force);
+            }
+
+            App.xbdbg.DebugTarget.SetBreakpoint(breakpointAddress);
+
+            App.xbdbg.OnStdNotify += async (EventType, EventInfo) =>
+            {
+                if (EventType == XboxDebugEventType.ExecutionBreak && EventInfo.Info.Address == breakpointAddress)
+                {
+                    await HandleBreakpointEventAsync(EventInfo, expectedRegisterValue, comparisonRegister);
+                }
+            };
+        }
+
+        private async Task HandleBreakpointEventAsync(IXboxEventInfo EventInfo, uint expectedRegisterValue, XboxRegisters64 comparisonRegister)
+        {
+            EventInfo.Info.Thread.TopOfStack.GetRegister64(comparisonRegister, out long registerValue);
+
+            await Dispatcher.BeginInvoke(new Action(() =>
+            {
+                if (registerValue == expectedRegisterValue)
+                {
+                    App.xbdbg.WriteUInt32(EventInfo.Info.Address, god);
+                }
+                else
+                {
+                    App.xbdbg.WriteUInt32(EventInfo.Info.Address, kill);
+                }
+
+                EventInfo.Info.Thread.Continue(true);
+                App.xbdbg.DebugTarget.Go(out bool flag2);
+                App.xbdbg.DebugTarget.FreeEventInfo(EventInfo.Info);
+            }));
         }
 
         public MortalKombatKompleteEdition()
@@ -74,7 +134,7 @@ namespace WpfAppByCrippy.Pages
             }
             catch (Exception ex)
             {
-                App.Error(ex);
+                App.Error("Mortal Kombat : Load Page", ex);
             }
         }
 
@@ -104,7 +164,7 @@ namespace WpfAppByCrippy.Pages
             }
             catch (Exception ex)
             {
-                App.Error(ex);
+                App.Error("Mortal Kombat : God Mode / One hit kill Button_Click", ex);
             }
         }
     }

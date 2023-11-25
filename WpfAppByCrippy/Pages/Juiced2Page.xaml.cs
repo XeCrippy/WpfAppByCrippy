@@ -24,7 +24,7 @@ namespace WpfAppByCrippy.Pages
                 }
                 else App.ConnectionError();
             }
-            catch(Exception ex) { App.Error(ex); }
+            catch(Exception ex) { App.Error("Juiced 2 : Set Money", ex); }
         }
     }
 }

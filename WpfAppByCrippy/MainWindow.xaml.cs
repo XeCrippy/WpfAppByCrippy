@@ -24,7 +24,10 @@ namespace WpfAppByCrippy
                     }
                 }
             }
-            catch(Exception ex) { App.Error(ex); }
+            catch(Exception ex)
+            {
+                App.Error("Window Load", ex);
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -58,7 +61,7 @@ namespace WpfAppByCrippy
             }
             catch (Exception ex)
             {
-                App.Error(ex);
+                App.Error("Main Connection", ex);
             }
         }
 
@@ -90,6 +93,11 @@ namespace WpfAppByCrippy
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             NavFrame1.Source = new Uri("Pages/SettingsPage.xaml", UriKind.RelativeOrAbsolute);
+        }
+
+        private void Forza2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame1.Source = new Uri("Pages/Forza2Page.xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }
