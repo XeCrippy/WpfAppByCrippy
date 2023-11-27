@@ -10,6 +10,7 @@ Juiced 2 HIN - TU1 (latest) <br/>
 Resident Evil 6 - TU6 (latest) <br/>
 Forza Motorsport 2 - latest <br/>
 
+* Visual Studio 2022 and .NET 6 required
 * Delete the current references to JRPC.dll and XDevkit.dll
 * You will need to add jrpc.dll and xdevkit.dll to compile
 * Change all references from JRPCPlusPlus to JRPC_Client (once you add jrpc.dll)
