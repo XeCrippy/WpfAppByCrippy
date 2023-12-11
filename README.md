@@ -2,13 +2,14 @@
 This is just a simple wpf gui I started the other day and will probably never finish. 
 
 Currently supports: <br/>
-Crysis 2 - TU5 (latest) <br/>
-Left 4 Dead 2 - TU6 (latest) <br/>
-Mortal Kombat Komplete Edition <br/>
-Sleeping Dogs - TU1 (latest) <br/>
-Juiced 2 HIN - TU1 (latest) <br/>
-Resident Evil 6 - TU6 (latest) <br/>
-Forza Motorsport 2 - latest <br/>
+* Crysis 2 - TU5 (latest) <br/>
+* Left 4 Dead 2 - TU6 (latest) <br/>
+* Mortal Kombat Komplete Edition <br/>
+* Sleeping Dogs - TU1 (latest) <br/>
+* Juiced 2 HIN - TU1 (latest) <br/>
+* Resident Evil 6 - TU6 (latest) <br/>
+* Forza Motorsport 2 - latest <br/>
+* Crackdown 2 - TU5 (latest) <br/>
 
 * Visual Studio 2022 and .NET 6 required
 * Delete the current references to JRPC.dll and XDevkit.dll
