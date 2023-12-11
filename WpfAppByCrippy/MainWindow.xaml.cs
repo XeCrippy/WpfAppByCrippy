@@ -99,5 +99,10 @@ namespace WpfAppByCrippy
         {
             NavFrame1.Source = new Uri("Pages/Forza2Page.xaml", UriKind.RelativeOrAbsolute);
         }
+
+        private void Crackdown2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame1.Source = new Uri("Pages/Crackdown2Page.xaml", UriKind.RelativeOrAbsolute);
+        }
     }
 }

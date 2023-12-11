@@ -70,7 +70,10 @@
                     <Image Source="/Imgs/settings.png" Stretch="Fill"/>
                 </Button>
                 <Button x:Name="Forza2Btn" Click="Forza2Btn_Click" Height="100" Width="100" Grid.Column="6" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
-
+                    <Image Source="/Imgs/forza2.jpg" Stretch="Fill"/>
+                </Button>
+                <Button x:Name="Crackdown2Btn" Click="Crackdown2Btn_Click" Height="100" Width="100" Grid.Column="7" Style="{DynamicResource DefaultButton}" Background="Transparent" Margin="10" BorderBrush="Firebrick">
+                    <Image Source="/Imgs/Crackdown2Cover.jpg" Stretch="Fill"/>
                 </Button>
             </Grid>
         </ScrollViewer>

@@ -1,0 +1,385 @@
+﻿void *__fastcall sub_82771EB0(_BYTE *a1, int a2, __int64 a3, __int64 a4) // console commands
+{
+   // only seems to need first argument = string
+}
+
+int __fastcall sub_825CE628(int a1, unsigned __int16 *a2, __int64 a3, __int64 a4, __int64 a5)
+{
+    a1 = 0x401A32F0; // = 
+    a2 = 0x3A204910; // where the string is stored
+    a3 = 0
+    a4 = 0x3A204910 // string
+    a5 = 0xFFFFFFFF83800000
+
+    r3 = a1
+    r4 = a2
+    r5 = 0x402FE1E8
+    r6 = a3
+    r7 = 0x000E000300011C00
+    r8 = a4
+    r9 = 0x6
+    r10 = a5
+}
+
+int __fastcall sub_825D0E00(int result, int a2, int a3, int a4, int a5, int a6, char a7, int a8)
+{
+    a1 = 0x40E3C9BC; // = 0
+    a2 = 0x82153380; // "test_particles" wchar
+    a3 = 0x827EB9A8; // function
+    a4 = 0x40E3C6F0; // = 0x820098B8
+    a5 = 0x82153354; // = "Test particle system" wchar
+    a6 = 0x8214C9C4; // = "vfxCreate test deity ray effect" wchar
+    a7 = 0;
+    a8 = 0;
+}
+
+
+
+
+
+
+commands
+{
+    maxagentskills
+    allskills
+    althleticskill // explicitly set players athletic skill
+    drivingskill // '' '' '' driving skill
+    explosiveskill
+    fightingskill
+    firearmskill
+    incalthleticskill // increment skill
+    incdrivingskill
+    incexplosiveskill
+    incfightingskill
+    incfirearmsskill
+    incallskills
+    decalthleticskill // decrement skill
+    decdrivingskill
+    decexplosiveskill
+    decfightingskill
+    decfirearmsskill
+    decallskills
+    althleticbonus
+    drivingbonus
+    explosivebonus
+    firearmbonus
+    fightingbonus
+    squadbonus
+    /////////////////////////////////////////////////////////
+    addweapon
+    apocalypse 
+    blowtyre // blow selected tire of players vehicle
+    combust // the target combusts
+    controlgraph
+    damagehealth // toggles damage effects on health
+    deleteallweapons // deletes all weapons the ai have
+    deletegameobject // calls DeleteGameObject on player's target
+    gputiming = byte_83801A00;
+    god
+    infiniteammo
+    inflatetyre // inflate selected tire of players vehicle
+    intextinfo // toggles or set display of interior/exterior info
+    instagib // instantly kills player's target
+    loaded // gives player all available equipment
+    posinfo
+    possess // player takes possesion of their target
+    rain // sets it to rain around the player
+    scalechar // scale the players target (if it's a character)
+    scaleplayer // scales the player
+    setarmour // usage = setarmour 100
+    setclearweather
+    setcloudyweather
+    sethealth // usage = sethealth 100
+    setonfire // sets the players target on fire
+    setovercastweather
+    setrandomweather
+    suicide
+    takedamage // usage = takedamage 50
+    testfixuptod
+    toggledisplaydamage // looks patched
+    toggleweather
+    transformplayer // tests transform vfx
+    unlock_supply_points
+    widescreen // 4:3 = flt_830A3124 = 1.3333334; wide = flt_830A3124 = 1.7777778;
+
+    StunAllCharacters // stuns all ai characters in the volume
+    
+    int __fastcall sub_822277E8(int a1)
+    {
+       attogocam // move camera attached to a game object (the player)
+       autocam // use camera in automatic mode ?
+       crcam // toggles camera crash mode
+       dcav // toggle debug camera activity volume on/off
+       fixcamera // use the fixed position camera
+       fixtrcam // use the fixed position with tracking camera
+       fly // enters fly mode
+       flycam // flythrough mode
+       flymode // toggles fly mode / player control mode
+       fpcam // toggles first person camera mode
+       isocam // toggles iso camera mode ?
+       satcam // use the satalite camera
+       setquake
+       showcamera // toggles display of camera position
+       testfixedcamera
+       toggletargetlag
+    }
+
+    int sub_82229178() // assuming mp settings
+    {
+        emptycity // start in an empty city
+        nethost // host a network game
+        netjoin // join a network game
+        netsecurity // toggles network security on/off usage = "value (0/1)"
+        forcenetversion
+        togglereliable
+        togglebadnetwork
+        setbadnetworkpacketloss
+        maxplayers
+        kicknode
+        npclb
+        togglepriority
+        reloadpriorityfile
+    }
+
+    int sub_82252D10()
+    {
+        toggleHUD
+        toggleVideo // toggles billboard videos (call before entering game)
+        togglePrompts // toggles HUD prompts
+        toggleFullFlow // toggles UI flow
+        writeLeaderboard // writes to the Road Race leaderboard ?
+        setHUDopacity
+        showgangmarkers // show/hide gang markers above ai
+        setfontscalefactor
+        toggleAllowForceHost // toggles whether the force host option is available ?
+        showskillhud // shows specific skill hud
+        hideskillhud
+        setminPlayers // set minimum players need to access a public game
+        sethostprobability // sets up hosting proablities for quick match. Args [active 0/1][Probability start 0-1]
+        ui_showallorbs // shows all logs on the ui map screen
+        forceshowbadconnectionhud
+    }
+
+    int __fastcall sub_82358538(int a1)
+    {
+        test_Particles // test particle system
+        load_Particles // load particle effect
+        unload_Particles // unload particle effect
+        enable_Particles // 0 = fail all particle effect spawns 1 = enable particle effect
+        attach_Particles // attach effect to player
+    }
+
+    _DWORD *__fastcall sub_821D5398(_DWORD *a1)
+    {
+        afterlighttiming // enable afterlight gpu timing
+    }
+
+    int sub_821FA7A8()
+    {
+        toggleweather
+        setclearweather
+        setcloudyweather
+        setovercastweather
+        setrandomweather
+    }
+
+    int sub_8236B070()
+    {
+        minp // binds input key(s) to an action
+        toggledebuginput
+    }
+
+    int sub_8248EB50() // game direction?
+    {
+        gdon
+        gdoff
+        gdreset
+        gdtest
+    }
+
+    int sub_824A7518()
+    {
+        SetCoverChecksTime // sets the delay between cover checks
+        snra
+        sns
+        snsr
+        snsl 
+        snsk 
+        snragi 
+        snrstr
+        snc_smg
+        snc_rocket
+        snc_shotgun
+        snc_rifle
+        snp_m
+        snp_f
+        freakpop
+        showbehaviourdebug
+        autopop
+        showsquaddebug
+        showbreachdebug
+        showabreachdebug
+        showtodebug
+        showwcsdebug
+        snd 
+        sdv 
+        said 
+        shc 
+        spd // delivers in some Ninja peacekeepers
+        sph // deliver some ninja peacekeepers
+        sed 
+        spgd 
+        scd // spawns a chase driver and vehicle that will chase the player
+        shct // bring the rain ?
+        smv // parp parp boom ?
+        swav // spawn attack wondering buggy
+        scp // show chopper paths
+        sap // calls an agent pickup
+    }
+
+    int sub_824DBE60() // AI related 
+    {
+        showcharactergraphs // show/hide local character graphs
+        showmissiongraphs
+        showglobalgraphs
+        showaivolumes // shows/hides bounding volumes
+        showpatrolroutes // show/hide ai patrol routes
+        showdestinations
+        showviewcones // show/hide ai view cones
+        showaccuracycones
+        showdebuglines
+        showdebugstrings
+        showanimationstrings
+        showmovementtype
+        showtargets // show/hide lines to ai targets
+        showtargetinfo // show/hide lines to last known ai target position
+        showvisibilitychecks
+        showistargetblockedchecks
+        showistargetpathclearchecks
+        showbullets
+        showgangs 
+        showcharacterids
+        showpointlocks
+        showta
+        ToggleDebugDrawNewRagdoll
+        ToggleForceNewRagdollHack
+        ShowNetIDInfo
+        dan // all dan's favorite settings ?
+        showbrains
+    }
+
+    _DWORD *sub_825284A8()
+    {
+        defaultlevel // sets the default level to load. usage = defaultlevel levelname
+        ForceJoinOption // sets which players are allowed to join the session
+    }
+
+    int __fastcall sub_825CE010(int a1)
+    {
+        bind // <keypress> "<command>" Binds command to keypress
+        // allows commented out lines in commands
+        help // displays list of commands in given category
+        search // searches all help commands
+        dumpallhelp // displays full list of all commands
+        exec // <filename> executes a command script
+        onload // <command> store command to execute on level load
+        ongamestart // 
+        stop // stops execution mid way through a command script
+    }
+
+    int sub_825D1478()
+    {
+        resetmetrics // reset vehicle metrics eg: 0-60
+    }
+
+    int sub_825DA0F0()
+    {
+        ppptool
+        spawntiming // toggle spawn timing on/off
+        demotimeouttime // sets demo timeout time in seconds
+        runfast
+        vsync // toggle vsync on / off
+        vlock
+        speedup // increases fps to max 30
+        speeddn
+        setfps // set fps
+        tilingmode // 0, 1, 2
+        gpufence // toggle gpu fence
+        shadow // 0,1,2
+        fastrender 
+        bbdebug // billboard debug
+        bbdummy // billboard dummy text on / off
+        helicam
+        pause
+        stepframe
+        pausecam
+        fps // toggle on screen fps counter
+        toggledeathcam
+        outlinemode // 0 | 1 | 2
+        togglegloballights
+        leigh
+    }
+}
+
+// console commands part 1
+int sub_83001258()
+{
+  _DWORD *v0; // r3
+  int v1; // r4
+
+  v0 = (_DWORD *)sub_8264DDA0(16);
+  if ( v0 )
+  {
+    v0[1] = "ConsoleCommand";
+    *v0 = off_820FA8D0;
+    v0[2] = 0;
+    v1 = (int)v0;
+    v0[3] = sub_82771EB0;
+  }
+  else
+  {
+    v1 = 0;
+  }
+  return sub_827726D0((int)&unk_838515EC, v1); // returned 0x838515EC
+}
+
+// console commands part 2
+void *__fastcall sub_82771EB0(_BYTE *a1, int a2, __int64 a3, __int64 a4)
+{
+  unsigned int v4; // r11
+  char *v5; // r10
+  char v6; // r9
+  __int64 v7; // r10
+  char *v8; // r11
+  void *result; // r3
+  char v10; // [sp+4Eh] [-212h] BYREF
+  unsigned __int16 v11[260]; // [sp+50h] [-210h] BYREF
+
+  HIDWORD(a3) = 0;
+  v4 = 0;
+  if ( *a1 )
+  {
+    v5 = &v10;
+    do
+    {
+      if ( v4 >= 0xFF )
+        break;
+      v6 = a1[v4++];
+      v5 += 2;
+      *(_WORD *)v5 = v6;
+      LODWORD(a3) = (unsigned __int8)a1[v4];
+    }
+    while ( a1[v4] );
+  }
+  LODWORD(v7) = &unk_83800000;
+  HIDWORD(v7) = 2 * v4;
+  LODWORD(a4) = v11;
+  v8 = (char *)off_83800F88;
+  *(unsigned __int16 *)((char *)v11 + HIDWORD(v7)) = 0;
+  if ( v8 )
+    HIDWORD(a3) = v8 + 1352;
+  result = off_83800AF4;
+  if ( off_83800AF4 )
+    result = (void *)sub_825CE628((int)off_83800AF4, v11, a3, a4, v7);
+  return result;
+}

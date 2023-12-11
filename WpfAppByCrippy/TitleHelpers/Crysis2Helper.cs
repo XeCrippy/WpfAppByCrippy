@@ -16,7 +16,7 @@ namespace WpfAppByCrippy.TitleHelpers
         private readonly uint ammo_off = 0x90AB0004;
 
         // Constants for Xbox memory addresses
-        const uint cxconsolePtr = 0x83AC6E58;
+        private uint cxconsolePtr = 0x83AC6E58;
         const uint executeStringInternal = 0x822D5B68;
 
         /// <summary>

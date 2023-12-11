@@ -8,6 +8,11 @@ namespace WpfAppByCrippy.TitleHelpers
 {
     internal class Forza2Helper
     {
+        THAmericanWastelandHelper helper = new THAmericanWastelandHelper();
+        
+        private void test()
+        {
 
+        }
     }
 }

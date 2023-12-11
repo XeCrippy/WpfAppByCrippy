@@ -16,7 +16,7 @@ namespace WpfAppByCrippy.Pages
 
         private void EnsureDebuggerConnection()
         {
-            if (!App.xbdbg.DebugTarget.IsDebuggerConnected(out string dbgName, out string usrName))
+            if (!App.xbdbg.DebugTarget.IsDebuggerConnected(out _, out _))
             {
                 App.xbdbg.DebugTarget.ConnectAsDebugger("XB360Anarchy", XboxDebugConnectFlags.Force);
             }
@@ -105,6 +105,16 @@ namespace WpfAppByCrippy.Pages
             }
         }
 
+        /// <summary>
+        /// Checks if the application is in debug mode (App.dbgConnection).
+        /// If in debug mode, checks if the debugger is connected. If not, it attempts to connect as a debugger.
+        /// Sets a breakpoint at the specified address (0x824765C4).
+        /// Subscribes to the OnStdNotify event, which is triggered when certain debug events occur.
+        /// When an execution break occurs at the specified breakpoint address, it retrieves the value in the r31 register (program counter).
+        /// Updates the UI by writing the value in the MoneyBox TextBox to the memory address (address + 0x8).
+        /// Removes all breakpoints, continues the thread, and resumes the execution of the debug target.
+        /// Optionally disconnects the debugger after performing the desired operations.
+        /// </summary>
         private void MoneyBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -121,7 +131,7 @@ namespace WpfAppByCrippy.Pages
                     App.xbdbg.OnStdNotify += HandleDebugEvent;
 
                     // Optionally disconnect the debugger after performing the desired operations
-                    // App.xbdbg.DebugTarget.DisconnectAsDebugger();
+                     //App.xbdbg.DebugTarget.DisconnectAsDebugger();
                 }
                 else
                 {

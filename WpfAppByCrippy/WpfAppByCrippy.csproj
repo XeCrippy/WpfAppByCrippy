@@ -11,7 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imgs\Crackdown2Cover.jpg" />
     <None Remove="Imgs\crysis2.png" />
+    <None Remove="Imgs\forza2.jpg" />
     <None Remove="Imgs\juiced.jpg" />
     <None Remove="Imgs\l4d.png" />
     <None Remove="Imgs\logosmall.png" />
@@ -24,7 +26,9 @@
 
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Resource Include="Imgs\Crackdown2Cover.jpg" />
     <Resource Include="Imgs\crysis2.png" />
+    <Resource Include="Imgs\forza2.jpg" />
     <Resource Include="Imgs\juiced.jpg" />
     <Resource Include="Imgs\logosmall.png" />
     <Resource Include="Imgs\mkkomplete.png" />
