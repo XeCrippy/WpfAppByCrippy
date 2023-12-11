@@ -11,6 +11,7 @@ Currently supports: <br/>
 * Forza Motorsport 2 - latest <br/>
 * Crackdown 2 - TU5 (latest) <br/>
 
+Requirements:
 * Visual Studio 2022 and .NET 6 required
 * Delete the current references to JRPC.dll and XDevkit.dll
 * You will need to add jrpc.dll and xdevkit.dll to compile
